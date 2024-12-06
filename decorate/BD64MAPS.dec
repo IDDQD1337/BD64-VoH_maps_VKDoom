@@ -29,7 +29,7 @@ MONSTER
 	States
 	{
 	Spawn:
-		TNT1 AAAAAAA 1 NoDelay A_Chase
+		TNT1 AAAAAAA 1 A_Chase
 		Goto Missile
 	Missile:
 		TNT1 A 1
@@ -708,6 +708,7 @@ actor Spark_W16 : Spark_W1	{speed 4.0}
 
 ACTOR WallExplosion : Rocket
 {
+DamageType "Extreme"
 Speed 0
 	States
 	{
@@ -903,7 +904,6 @@ Health 40
 Mass 0x7FFFFFFF
 height 1
 radius 1
-damagefactor "Blood",0.0
 -SOLID
 +SHOOTABLE
 +NOBLOOD
@@ -1121,32 +1121,30 @@ BounceType "Doom"
 BounceFactor 0.1
 Alpha 0.4
 RenderStyle Translucent
--NOGRAVITY
 	States
 	{
 	Spawn:
-		SMO3 A 50
-		SMO3 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_FadeOut(0.006)
+		SMK7 K 50
+		SMK7 KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK 1 A_FadeOut(0.006)
 		Goto Death
 	Death:
-		SMO3 A 1 A_FadeOut(0.006)
+		SMK7 K 1 A_FadeOut(0.006)
 		Wait
 	}
 }
 
 ACTOR DestroyedBuildingSmokeSpawner : DestroyedBuildingSmoke
 {
-Speed 10
+Speed 5
 Gravity 0.2
 	States
 	{
 	Spawn:
-		SMO3 AAAA 10 NoDelay A_SpawnItemEx("DestroyedBuildingSmoke")
-		SMO3 AAAAAAAAAAAAAAAA 1 A_FadeOut(0.03)
+		SMK7 KKKK 10 NoDelay A_SpawnItemEx("DestroyedBuildingSmoke")
 		Goto Death
 	Death:
-		TNT1 A 1
-		Stop
+		SMK7 K 1 A_FadeOut(0.03)
+		Wait
 	}
 }
 
@@ -1607,7 +1605,7 @@ ACTOR AmbientSoundWaterFall1 21006
 	States
 	{
 	Spawn:
-		TNT1 A 1 NoDelay A_PlaySound("WAFALL1",CHAN_WEAPON,1)
+		TNT1 A 1 NoDelay A_PlaySound("WAFALL1",CHAN_VOICE,1)
 		TNT1 A 100
 		Loop
 	}
@@ -1622,7 +1620,7 @@ ACTOR AmbientSoundWaterFall2 21007
 	States
 	{
 	Spawn:
-		TNT1 A 1 NoDelay A_PlaySound("WAFALL2",CHAN_WEAPON,1)
+		TNT1 A 1 NoDelay A_PlaySound("WAFALL2",CHAN_VOICE,1)
 		TNT1 A 100
 		Loop
 	}
